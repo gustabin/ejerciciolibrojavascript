@@ -24,4 +24,6 @@
 
 #### Estos proyectos son ideales para aplicar los conceptos que has aprendido en el libro, como manipulación del DOM, manejo de eventos, programación asincrónica, uso de estructuras de datos, y más. Puedes comenzar con proyectos simples y luego avanzar hacia proyectos más complejos a medida que adquieras más experiencia. ¡Diviértete programando! ####
 
-- ✔Ten en cuenta que, como cualquier recurso en línea, su disponibilidad puede cambiar con el tiempo, por lo que te recomiendo verificar la documentación de la API para obtener detalles actualizados. -
+- ✔Ten en cuenta que, como cualquier recurso en línea, su disponibilidad puede cambiar con el tiempo, por lo que te recomiendo verificar la documentación de la API para obtener detalles actualizados.
+
+El Autor
