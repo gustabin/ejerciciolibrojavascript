@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Longitud</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Conversor de Longitud</h1>
+        <div>
+            <label for="meters">Metros:</label>
+            <input type="number" id="meters" placeholder="Ingrese la cantidad en metros">
+        </div>
+        <div>
+            <label for="feet">Pies:</label>
+            <input type="number" id="feet" placeholder="Resultado en pies" readonly>
+        </div>
+        <button onclick="convertLength()">Convertir</button>
+    </div>
+
+    <script>
+        // Función para convertir metros a pies
+        function convertLength() {
+            const meters = parseFloat(document.getElementById("meters").value);
+            if (!isNaN(meters)) {
+                const feet = meters * 3.28084;
+                document.getElementById("feet").value = feet.toFixed(2);
+            } else {
+                document.getElementById("feet").value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Adivinanza</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Juego de Adivinanza</h1>
+        <p>¡Adivina el número entre 1 y 100!</p>
+        <input type="number" id="guess" min="1" max="100" placeholder="Ingresa tu suposición">
+        <button onclick="checkGuess()">Adivinar</button>
+        <p id="message"></p>
+        <p>Intentos: <span id="attempts">0</span></p>
+    </div>
+
+    <script>
+        // Generar un número aleatorio entre 1 y 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        // Función para comprobar la suposición del usuario
+        function checkGuess() {
+            const guessInput = document.getElementById("guess");
+            const guess = parseInt(guessInput.value);
+            attempts++;
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                setMessage("Ingresa un número válido entre 1 y 100.", "red");
+            } else if (guess === randomNumber) {
+                setMessage(`¡Felicidades! Adivinaste el número ${randomNumber} en ${attempts} intentos.`, "green");
+                guessInput.disabled = true;
+            } else {
+                const message = guess < randomNumber ? "Demasiado bajo. Inténtalo de nuevo." : "Demasiado alto. Inténtalo de nuevo.";
+                setMessage(message, "red");
+            }
+
+            guessInput.value = "";
+            guessInput.focus();
+            document.getElementById("attempts").textContent = attempts;
+        }
+
+        // Función para mostrar mensajes
+        function setMessage(message, color) {
+            const messageElement = document.getElementById("message");
+            messageElement.textContent = message;
+            messageElement.style.color = color;
+        }
+    </script>
+</body>
+
+</html>

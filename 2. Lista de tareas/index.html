@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de Tareas</h1>
+        <input type="text" id="task" placeholder="Nueva tarea">
+        <button onclick="addTask()">Agregar</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        // Arreglo para almacenar las tareas
+        const tasks = [];
+
+        // Función para agregar una nueva tarea
+        function addTask() {
+            const taskInput = document.getElementById("task");
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                tasks.push(taskText);
+                taskInput.value = "";
+                displayTasks();
+            }
+        }
+
+        // Función para mostrar las tareas en el DOM
+        function displayTasks() {
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <span>${task}</span>
+                    <button onclick="deleteTask(${index})">Eliminar</button>
+                `;
+                taskList.appendChild(listItem);
+            });
+        }
+
+        // Función para eliminar una tarea
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            displayTasks();
+        }
+
+        // Mostrar las tareas iniciales
+        displayTasks();
+    </script>
+</body>
+
+</html>

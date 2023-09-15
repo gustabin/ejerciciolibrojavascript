@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación de Notas</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .note {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .note button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Aplicación de Notas</h1>
+        <input type="text" id="noteText" placeholder="Escribe una nueva nota">
+        <button onclick="addNote()">Agregar Nota</button>
+        <div id="notes"></div>
+    </div>
+
+    <script>
+        // Arreglo para almacenar las notas
+        const notes = [];
+
+        // Función para agregar una nueva nota
+        function addNote() {
+            const noteText = document.getElementById("noteText").value.trim();
+
+            if (noteText !== "") {
+                const note = {
+                    text: noteText,
+                    id: Date.now()
+                };
+
+                notes.push(note);
+                document.getElementById("noteText").value = "";
+                displayNotes();
+            }
+        }
+
+        // Función para mostrar las notas en el DOM
+        function displayNotes() {
+            const notesContainer = document.getElementById("notes");
+            notesContainer.innerHTML = "";
+
+            notes.forEach(note => {
+                const noteElement = document.createElement("div");
+                noteElement.className = "note";
+                noteElement.innerHTML = `
+                    <p>${note.text}</p>
+                    <button onclick="deleteNote(${note.id})">Eliminar</button>
+                `;
+                notesContainer.appendChild(noteElement);
+            });
+        }
+
+        // Función para eliminar una nota
+        function deleteNote(noteId) {
+            const noteIndex = notes.findIndex(note => note.id === noteId);
+            if (noteIndex !== -1) {
+                notes.splice(noteIndex, 1);
+                displayNotes();
+            }
+        }
+
+        // Mostrar las notas iniciales
+        displayNotes();
+    </script>
+</body>
+
+</html>

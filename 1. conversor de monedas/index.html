@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Monedas</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Conversor de Monedas</h1>
+        <div>
+            <label for="amount">Cantidad:</label>
+            <input type="number" id="amount" placeholder="Ingrese la cantidad">
+        </div>
+        <div>
+            <label for="from">De:</label>
+            <select id="from">
+                <!-- Aquí puedes agregar opciones para diferentes monedas -->
+                <option value="USD">Dólar estadounidense (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="GBP">Libra esterlina (GBP)</option>
+            </select>
+        </div>
+        <div>
+            <label for="to">A:</label>
+            <select id="to">
+                <!-- Aquí puedes agregar opciones para diferentes monedas -->
+                <option value="USD">Dólar estadounidense (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="GBP">Libra esterlina (GBP)</option>
+            </select>
+        </div>
+        <button onclick="convertCurrency()">Convertir</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Función para realizar la conversión de moneda
+        function convertCurrency() {
+            const amount = document.getElementById("amount").value;
+            const fromCurrency = document.getElementById("from").value;
+            const toCurrency = document.getElementById("to").value;
+
+            const apiUrl = `https://api.apilayer.com/exchangerates_data/latest?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const convertedAmount = data.result;
+                    const conversionResult = `${amount} ${fromCurrency} equivale a ${convertedAmount} ${toCurrency}`;
+                    document.getElementById("result").textContent = conversionResult;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+</body>
+
+</html>

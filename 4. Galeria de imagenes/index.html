@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .full-image {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Galería de Imágenes</h1>
+    <div class="gallery">
+        <img src="imagen1.jpg" alt="Imagen 1" class="thumbnail" onclick="showImage('imagen1.jpg')">
+        <img src="imagen2.jpg" alt="Imagen 2" class="thumbnail" onclick="showImage('imagen2.jpg')">
+        <img src="imagen3.jpg" alt="Imagen 3" class="thumbnail" onclick="showImage('imagen3.jpg')">
+    </div>
+    <div class="full-image">
+        <img src="" alt="Imagen en grande" id="largeImage">
+    </div>
+
+    <script>
+        // Función para mostrar la imagen en grande
+        function showImage(imageSrc) {
+            const largeImage = document.getElementById("largeImage");
+            largeImage.src = imageSrc;
+            largeImage.parentElement.style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
